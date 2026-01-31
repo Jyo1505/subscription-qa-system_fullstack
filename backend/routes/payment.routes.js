@@ -1,7 +1,9 @@
-const router = require("express").Router();
-const auth = require("../middlewares/auth.middleware");
-const pay = require("../controllers/payment.controller");
+import { Router } from "express";
+import auth from "../middlewares/auth.middleware.js";
+import pay from "../controllers/payment.controller.js";
+
+const router = Router();
 
 router.post("/fake-pay", auth, pay.fakePayment);
 
-module.exports = router;
+export default router;
