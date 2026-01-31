@@ -1,7 +1,7 @@
 
 import pool from "../config/db.js";
 
-const ask = async (req, res) => {
+export const ask = async (req, res) => {
   try {
     const userId = req.userId;
     const question = req.body.title;
@@ -108,4 +108,4 @@ const ask = async (req, res) => {
   }
 };
 
-export default { ask };
+// export default { ask };

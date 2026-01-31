@@ -17,7 +17,7 @@ const PLANS = {
   GOLD: { price: 1000, limit: 9999 }
 };
 
-const fakePayment = async (req, res) => {
+export const fakePayment = async (req, res) => {
   try {
     if (!isAllowed()) {
       return res.status(403).json({
