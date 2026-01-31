@@ -1,13 +1,10 @@
-
-
-
-const API = "http://192.168.0.102:1000/api";
+const API = "https://subscription-qa-system-fullstack.vercel.app/api";
 
 function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  fetch("/api/auth/login", {
+  fetch(`${API}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -29,7 +26,6 @@ function login() {
     });
 }
 
-
 function register() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -38,35 +34,38 @@ function register() {
 
   error.innerText = "";
 
+  // ✅ Email validation
   if (!email.endsWith("@gmail.com")) {
     error.innerText = "Only Gmail addresses are allowed";
     return;
   }
 
+  // ✅ Password length
   if (password.length < 6) {
     error.innerText = "Password must be at least 6 characters";
     return;
   }
 
+  // ✅ Match passwords
   if (password !== confirmPassword) {
     error.innerText = "Passwords do not match";
     return;
   }
 
-  // Password strength check (final validation)
-if (
-  password.length < 8 ||
-  !/[A-Z]/.test(password) ||
-  !/[a-z]/.test(password) ||
-  !/[0-9]/.test(password) ||
-  !/[@#$!%*?&]/.test(password)
-) {
-  error.innerText =
-    "Password must be strong (8 chars, uppercase, lowercase, number & symbol)";
-  return;
-}
+  // ✅ Strong password check
+  if (
+    password.length < 8 ||
+    !/[A-Z]/.test(password) ||
+    !/[a-z]/.test(password) ||
+    !/[0-9]/.test(password) ||
+    !/[@#$!%*?&]/.test(password)
+  ) {
+    error.innerText =
+      "Password must be strong (8 chars, uppercase, lowercase, number & symbol)";
+    return;
+  }
 
-  fetch("/api/auth/register", {
+  fetch(`${API}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -75,12 +74,10 @@ if (
       const data = await res.json();
 
       if (!res.ok) {
-        // ❌ Error from backend
         error.innerText = data.message;
         return;
       }
 
-      // ✅ Success
       alert(data.message);
       window.location = "index.html";
     })
@@ -89,6 +86,7 @@ if (
     });
 }
 
+// ✅ Password strength UI (UNCHANGED)
 function checkPasswordStrength() {
   const password = document.getElementById("password").value;
   const bar = document.getElementById("strengthBar");

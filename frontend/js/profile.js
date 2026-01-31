@@ -1,8 +1,10 @@
+const API = "https://subscription-qa-system-fullstack.vercel.app/api";
+
 if (!localStorage.getItem("token")) {
   window.location = "index.html";
 }
 
-fetch("/api/auth/profile", {
+fetch(`${API}/auth/profile`, {
   headers: {
     "Authorization": localStorage.getItem("token")
   }
