@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app/api";
+const API = "https://subscription-qa-system-fullstack.vercel.app//api";
 
 if (!localStorage.getItem("token")) {
   window.location = "index.html";

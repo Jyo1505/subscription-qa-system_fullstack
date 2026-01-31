@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app/api";
+const API = "https://subscription-qa-system-fullstack.vercel.app//api";
 const plan = localStorage.getItem("selectedPlan");
 
 document.getElementById("planText").innerText =

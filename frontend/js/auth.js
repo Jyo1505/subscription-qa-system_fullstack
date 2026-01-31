@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app/api";
+const API = "https://subscription-qa-system-fullstack.vercel.app//api";
 
 function login() {
   const email = document.getElementById("email").value;
