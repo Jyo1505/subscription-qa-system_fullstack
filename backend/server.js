@@ -7,8 +7,17 @@ import questionRoutes from "./routes/question.routes.js";
 
 const app = express();
 
-/* ---------- MIDDLEWARE ---------- */
-app.use(cors());
+/* ---------- CORS (FIXED FOR VERCEL + PREFLIGHT) ---------- */
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+// 👇 THIS IS THE KEY LINE (preflight support)
+app.options("*", cors());
+
+/* ---------- BODY PARSER ---------- */
 app.use(express.json());
 
 /* ---------- API ROUTES ---------- */
