@@ -97,4 +97,4 @@ export const fakePayment = async (req, res) => {
   }
 };
 
-export default { fakePayment };
+// export default { fakePayment };

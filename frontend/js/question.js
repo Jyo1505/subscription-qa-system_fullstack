@@ -1,21 +1,21 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app//api";
+  const API = "https://subscription-qa-system-fullstack.vercel.app";
 
-function ask() {
-  fetch(`${API}/api/questions/ask`, {
-    method: "POST",
-    headers: {
-      "Authorization": localStorage.getItem("token"),
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ title: title.value })
-  })
-  .then(async res => {
-    const data = await res.json();
-    if (!res.ok) {
-      alert(data.message);
-      return;
-    }
-    document.getElementById("aiAnswer").value = data.aiAnswer;
-  })
-  .catch(() => alert("Server error"));
-}
+  function ask() {
+    fetch(`${API}/api/questions/ask`, {
+      method: "POST",
+      headers: {
+        "Authorization": localStorage.getItem("token"),
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title: title.value })
+    })
+    .then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.message);
+        return;
+      }
+      document.getElementById("aiAnswer").value = data.aiAnswer;
+    })
+    .catch(() => alert("Server error"));
+  }
