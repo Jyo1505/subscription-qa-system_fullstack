@@ -1,9 +1,7 @@
-import express from "express";
+import { Router } from "express";
+import { ask } from "../controllers/question.controller.js";
 import auth from "../middlewares/auth.middleware.js";
-import question from "../controllers/question.controller.js";
 
-const router = express.Router();
-
-router.post("/ask", auth, question.ask);
-
+const router = Router();
+router.post("/ask", auth, ask);
 export default router;
