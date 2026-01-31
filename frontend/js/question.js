@@ -1,3 +1,9 @@
+function showMessage(text, type = "success") {
+  const msg = document.getElementById("msg");
+  msg.className = `msg ${type}`;
+  msg.innerText = text;
+}
+
 function ask() {
   const title = document.getElementById("title").value;
 
@@ -14,11 +20,14 @@ function ask() {
     console.log(data);
 
     if (!res.ok) {
-      alert(data.message);
-      return;
+      showMessage(data.message, "error");
+            return;
     }
 
     document.getElementById("aiAnswer").value = data.aiAnswer;
+     showMessage("Question posted successfully", "success");
   })
-  .catch(() => alert("Server error"));
+  .catch(() => {
+    showMessage("Server error", "error"); // ✅ HERE
+  });
 }

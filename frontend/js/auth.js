@@ -1,4 +1,9 @@
 // const API = "https://subscription-qa-system-fullstack.onrender.com";
+function showMessage(text, type = "success") {
+  const msg = document.getElementById("msg");
+  msg.className = `msg ${type}`;
+  msg.innerText = text;
+}
 
 function login() {
   const email = document.getElementById("email").value;
@@ -13,16 +18,18 @@ function login() {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.message);
+        showMessage(data.message, "success");
+
         return;
       }
 
       localStorage.setItem("token", data.token);
-      alert(data.message);
+      showMessage(data.message, "success");
+
       window.location = "pricing.html";
     })
     .catch(() => {
-      alert("Server not responding");
+      showMessage("Server not responding", "error");
     });
 }
 
@@ -74,11 +81,12 @@ function register() {
       const data = await res.json();
 
       if (!res.ok) {
-        error.innerText = data.message;
+        showMessage(data.message, "error");
         return;
       }fetch
 
-      alert(data.message);
+      showMessage(data.message, "success");
+
       window.location = "index.html";
     })
     .catch(() => {

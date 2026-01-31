@@ -1,4 +1,10 @@
 // const API = "https://subscription-qa-system-fullstack.onrender.com";
+function showMessage(text, type = "success") {
+  const msg = document.getElementById("msg");
+  msg.className = `msg ${type}`;
+  msg.innerText = text;
+}
+
 const plan = localStorage.getItem("selectedPlan");
 
 document.getElementById("planText").innerText =
@@ -51,7 +57,7 @@ function pay() {
       return;
     }
 
-    alert("Payment successful!");
+    showMessage("Payment successful! Invoice sent to email.", "success");
     window.location = "ask.html";
   })
   .catch(() => alert("Server error"));
