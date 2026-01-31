@@ -1,4 +1,12 @@
 // const API = "https://subscription-qa-system-fullstack.onrender.com";
+function showMessage(text, type = "success") {
+  const msg = document.getElementById("msg");
+  if (!msg) return;
+
+  msg.innerText = text;
+  msg.style.color = type === "error" ? "red" : "green";
+}
+
 const plan = localStorage.getItem("selectedPlan");
 
 document.getElementById("planText").innerText =
