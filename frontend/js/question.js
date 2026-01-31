@@ -1,7 +1,7 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app/api";
+const API = "https://subscription-qa-system-fullstack.vercel.app//api";
 
 function ask() {
-  fetch(`${API}/questions/ask`, {
+  fetch(`${API}/api/questions/ask`, {
     method: "POST",
     headers: {
       "Authorization": localStorage.getItem("token"),

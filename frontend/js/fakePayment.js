@@ -5,7 +5,7 @@ document.getElementById("planText").innerText =
   "Selected Plan: " + plan;
 
 function pay() {
-  fetch(`${API}/payment/fake-pay`, {
+  fetch(`${API}/api/payment/fake-pay`, {
     method: "POST",
     headers: {
       "Authorization": localStorage.getItem("token"),

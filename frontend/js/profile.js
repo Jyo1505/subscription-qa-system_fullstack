@@ -4,7 +4,7 @@ if (!localStorage.getItem("token")) {
   window.location = "index.html";
 }
 
-fetch(`${API}/auth/profile`, {
+fetch(`${API}/api/auth/profile`, {
   headers: {
     "Authorization": localStorage.getItem("token")
   }

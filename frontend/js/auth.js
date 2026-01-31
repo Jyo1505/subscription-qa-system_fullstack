@@ -1,10 +1,10 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app//api";
+const API = "https://subscription-qa-system-fullstack.vercel.app";
 
 function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  fetch(`${API}/auth/login`, {
+  fetch(`${API}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
@@ -65,7 +65,7 @@ function register() {
     return;
   }
 
-  fetch(`${API}/auth/register`, {
+  fetch(`${API}/api/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
