@@ -1,16 +1,10 @@
 // const API = "https://subscription-qa-system-fullstack.onrender.com";
-function showMessage(text, type = "success") {
-  const msg = document.getElementById("msg");
-  msg.className = `msg ${type}`;
-  msg.innerText = text;
-}
-
 const plan = localStorage.getItem("selectedPlan");
 
 document.getElementById("planText").innerText =
   "Selected Plan: " + plan;
 
-// 🔒 INPUT HELPERS
+/* 🔒 INPUT HELPERS */
 function onlyNumbers(input) {
   input.value = input.value.replace(/[^0-9]/g, "");
 }
@@ -24,23 +18,26 @@ function pay() {
   const cardName = document.getElementById("cardName").value.trim();
   const cvv = document.getElementById("cvv").value.trim();
 
-  // ✅ VALIDATIONS (CLIENT SIDE)
+  // clear previous message
+  showMessage("", "");
+
+  /* ❌ CLIENT VALIDATIONS */
   if (!/^[0-9]{16}$/.test(cardNumber)) {
-    alert("Card number must be exactly 16 digits");
+    showMessage("Card number must be exactly 16 digits", "error");
     return;
   }
 
   if (!/^[A-Z ]+$/.test(cardName)) {
-    alert("Name must contain only CAPITAL letters (A–Z)");
+    showMessage("Name must contain only CAPITAL letters (A–Z)", "error");
     return;
   }
 
   if (!/^[0-9]{3}$/.test(cvv)) {
-    alert("CVV must be exactly 3 digits");
+    showMessage("CVV must be exactly 3 digits", "error");
     return;
   }
 
-  // ✅ CALL BACKEND
+  /* ✅ CALL BACKEND */
   fetch(`${API}/api/payment/fake-pay`, {
     method: "POST",
     headers: {
@@ -49,16 +46,27 @@ function pay() {
     },
     body: JSON.stringify({ plan })
   })
-  .then(async res => {
-    const data = await res.json();
+    .then(async res => {
+      const data = await res.json();
 
-    if (!res.ok) {
-      alert(data.message);
-      return;
-    }
+      if (!res.ok) {
+        // ⛔ Backend error (time restriction, upgrade rule, etc.)
+        showMessage(data.message, "error");
+        return;
+      }
 
-    showMessage("Payment successful! Invoice sent to email.", "success");
-    window.location = "ask.html";
-  })
-  .catch(() => alert("Server error"));
+      // ✅ SUCCESS
+      showMessage(
+        "Payment successful 🎉 Invoice sent to your email",
+        "success"
+      );
+
+      // optional redirect after 1.5 sec
+      setTimeout(() => {
+        window.location = "ask.html";
+      }, 1500);
+    })
+    .catch(() => {
+      showMessage("Server error. Please try again later.", "error");
+    });
 }
