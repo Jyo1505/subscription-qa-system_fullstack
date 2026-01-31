@@ -17,3 +17,4 @@ fetch(`${API}/api/auth/profile`, {
   document.getElementById("expiry").innerText =
     data.expires_at ? new Date(data.expires_at).toDateString() : "Free Plan";
 });
+
