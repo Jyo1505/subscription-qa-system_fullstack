@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask Question</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="ask-wrapper">
+
+  <!-- Header -->
+  <div class="ask-header">
+    <h1>Ask a Question</h1>
+  </div>
+
+  <!-- Card -->
+  <div class="ask-card">
+    <h2>Post your question</h2>
+
+    <input type="text" id="title" placeholder="Type your question here...">
+
+    <button onclick="ask()">Post Question</button>
+
+
+<div style="margin-top:15px;">
+  <textarea id="aiAnswer" rows="6" placeholder="AI answer will appear here..." style="width:100%;border-radius:10px;padding:10px;"></textarea>
+</div>
+
+    <div class="ask-actions">
+      <button class="back-btn" onclick="window.location='pricing.html'">
+        Back to Dashboard
+      </button>
+
+      <button class="logout" onclick="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+<script src="js/question.js"></script>
+
+
+
+</body>
+</html>

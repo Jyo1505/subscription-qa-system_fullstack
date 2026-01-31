@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Dashboard Header -->
+  <div class="dashboard-header">
+    <h1>My Dashboard</h1>
+
+    <div class="dashboard-actions">
+      <button class="ask-btn" onclick="window.location='ask.html'">
+        Ask a Question
+      </button>
+
+      <button class="upgrade-btn" onclick="window.location='profile.html'">
+        View Profile
+      </button>
+    </div>
+  </div>
+
+  <!-- Pricing Cards -->
+  <div class="pricing-container">
+
+    <div class="plan-card">
+      <h3>Free</h3>
+      <p class="price">₹0</p>
+      <ul>
+        <li>✔ 1 question / day</li>
+        <li>✔ Basic access</li>
+      </ul>
+    </div>
+
+    <div class="plan-card">
+      <h3>Bronze</h3>
+      <p class="price">₹100 / month</p>
+      <ul>
+        <li>✔ 5 questions / day</li>
+        <li>✔ Email support</li>
+      </ul>
+      <button onclick="goToPay('BRONZE')">Subscribe</button>
+    </div>
+
+    <div class="plan-card">
+      <h3>Silver</h3>
+      <p class="price">₹300 / month</p>
+      <ul>
+        <li>✔ 10 questions / day</li>
+        <li>✔ Priority access</li>
+      </ul>
+      <button onclick="goToPay('SILVER')">Subscribe</button>
+    </div>
+
+    <div class="plan-card">
+      <h3>Gold</h3>
+      <p class="price">₹1000 / month</p>
+      <ul>
+        <li>✔ Unlimited questions</li>
+        <li>✔ Premium support</li>
+      </ul>
+      <button onclick="goToPay('GOLD')">Subscribe</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/auth.js"></script>
+<script src="js/payment.js"></script>
+
+<script>
+function goToPay(plan) {
+  localStorage.setItem("selectedPlan", plan);
+  window.location = "fake-payment.html";
+}
+</script>
+
+</body>
+</html>

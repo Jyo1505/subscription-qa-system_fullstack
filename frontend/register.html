@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>Create Account</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="container">
+  <h2>Create Account</h2>
+
+  <input 
+    type="email" 
+    id="email" 
+    placeholder="Enter Gmail address"
+    pattern=".+@gmail\.com"
+    title="Please enter a valid Gmail address"
+    required
+  />
+
+<input 
+  type="password" 
+  id="password" 
+  placeholder="Create password"
+  onkeyup="checkPasswordStrength()"
+  required
+/>
+
+<div id="strengthContainer">
+  <div id="strengthBar"></div>
+</div>
+
+<p id="strengthText"></p>
+
+<input 
+  type="password" 
+  id="confirmPassword" 
+  placeholder="Confirm password"
+  required
+/>
+
+  <button onclick="register()">Register</button>
+
+  <p id="error" style="color:red; text-align:center;"></p>
+
+  <a href="index.html">Already have an account? Login</a>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

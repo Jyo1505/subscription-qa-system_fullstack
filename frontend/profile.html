@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>My Dashboard</h2>
+
+  <p><b>Email:</b> <span id="email"></span></p>
+  <p><b>Plan:</b> <span id="plan"></span></p>
+  <p><b>Daily Limit:</b> <span id="limit"></span></p>
+  <p><b>Valid Till:</b> <span id="expiry"></span></p>
+
+  <button onclick="window.location='ask.html'">Ask Question</button>
+  <button onclick="window.location='pricing.html'">Upgrade Plan</button>
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<script src="js/auth.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>
