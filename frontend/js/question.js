@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app";
+const API = "https://subscription-qa-system-fullstack.onrender.com";
 
 function ask() {
   const title = document.getElementById("title").value;
