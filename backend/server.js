@@ -7,17 +7,8 @@ import questionRoutes from "./routes/question.routes.js";
 
 const app = express();
 
-/* ---------- CORS (FIXED FOR VERCEL + PREFLIGHT) ---------- */
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
-// 👇 THIS IS THE KEY LINE (preflight support)
-app.options("*", cors());
-
-/* ---------- BODY PARSER ---------- */
+/* ---------- MIDDLEWARE ---------- */
+app.use(cors());
 app.use(express.json());
 
 /* ---------- API ROUTES ---------- */
@@ -30,5 +21,7 @@ app.get("/", (req, res) => {
   res.send("Backend running ✅");
 });
 
-/* ❌ DO NOT USE app.listen() */
+/* ❌ DO NOT use app.all('*') or app.options('*') */
+/* ❌ DO NOT use wildcard routes in Express 5 */
+
 export default app;
