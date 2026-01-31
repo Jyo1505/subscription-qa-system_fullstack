@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -8,24 +8,19 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-exports.sendInvoice = async (to, invoice) => {
-  const html = `
-    <h2>Subscription Invoice</h2>
-    <p>Thank you for your purchase.</p>
-    <hr/>
-    <p><b>Plan:</b> ${invoice.plan}</p>
-    <p><b>Amount:</b> ₹${invoice.amount}</p>
-    <p><b>Transaction ID:</b> ${invoice.txnId}</p>
-    <p><b>Valid till:</b> ${invoice.expiry}</p>
-    <p><b>Date:</b> ${invoice.date}</p>
-    <hr/>
-    <p>StackOverflow Clone</p>
-  `;
-
+async function sendInvoice(to, data) {
   await transporter.sendMail({
-    from: `"StackOverflow Clone" <${process.env.EMAIL}>`,
+    from: process.env.EMAIL,
     to,
-    subject: "Subscription Invoice",
-    html
+    subject: "Payment Invoice",
+    text: `
+Plan: ${data.plan}
+Amount: ₹${data.amount}
+Transaction ID: ${data.txnId}
+Expiry: ${data.expiry}
+Date: ${data.date}
+`
   });
-};
+}
+
+export default { sendInvoice };
