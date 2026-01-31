@@ -8,19 +8,13 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-async function sendInvoice(to, data) {
-  await transporter.sendMail({
-    from: process.env.EMAIL,
-    to,
-    subject: "Payment Invoice",
-    text: `
-Plan: ${data.plan}
-Amount: ₹${data.amount}
-Transaction ID: ${data.txnId}
-Expiry: ${data.expiry}
-Date: ${data.date}
-`
-  });
-}
-
-export default { sendInvoice };
+export default {
+  async sendInvoice(to, data) {
+    await transporter.sendMail({
+      from: process.env.EMAIL,
+      to,
+      subject: "Subscription Invoice",
+      text: `Plan: ${data.plan}\nAmount: ${data.amount}`
+    });
+  }
+};

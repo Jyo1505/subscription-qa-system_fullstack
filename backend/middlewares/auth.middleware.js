@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export default function auth(req, res, next) {
+export default function (req, res, next) {
   const token = req.headers.authorization;
 
   if (!token) {
@@ -11,7 +11,7 @@ export default function auth(req, res, next) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.id;
     next();
-  } catch (error) {
+  } catch {
     return res.status(401).json({ message: "Invalid token" });
   }
 }
