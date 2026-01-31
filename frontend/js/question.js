@@ -1,5 +1,3 @@
-// const API = "https://subscription-qa-system-fullstack.onrender.com";
-
 function ask() {
   const title = document.getElementById("title").value;
 
@@ -13,6 +11,7 @@ function ask() {
   })
   .then(async res => {
     const data = await res.json();
+    console.log(data);
 
     if (!res.ok) {
       alert(data.message);
