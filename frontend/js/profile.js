@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.onrender.com";
+// const API = "https://subscription-qa-system-fullstack.onrender.com";
 
 if (!localStorage.getItem("token")) {
   window.location = "index.html";

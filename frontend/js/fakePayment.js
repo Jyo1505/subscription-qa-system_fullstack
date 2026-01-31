@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.onrender.com";
+// const API = "https://subscription-qa-system-fullstack.onrender.com";
 const plan = localStorage.getItem("selectedPlan");
 
 document.getElementById("planText").innerText =
