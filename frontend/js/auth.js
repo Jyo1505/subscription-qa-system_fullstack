@@ -1,4 +1,4 @@
-const API = "https://subscription-qa-system-fullstack.vercel.app";
+const API = "https://subscription-qa-system-fullstack.onrender.com";
 
 function login() {
   const email = document.getElementById("email").value;
@@ -76,7 +76,7 @@ function register() {
       if (!res.ok) {
         error.innerText = data.message;
         return;
-      }
+      }fetch
 
       alert(data.message);
       window.location = "index.html";
