@@ -1,30 +1,22 @@
-// import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-// const resend = new Resend(process.env.RESEND_API_KEY);
+const mailer = async (toEmail, htmlContent) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASS
+    }
+  });
 
-// const sendInvoice = async (to, data) => {
-//   try {
-//     const result = await resend.emails.send({
-//       from: "Subscription QA <onboarding@resend.dev>", // REQUIRED
-//       to: [to],
-//       subject: "Subscription Invoice",
-//       text: `
-// Payment Successful ✅
+  await transporter.sendMail({
+    from: `"MyQAApp" <${process.env.EAMIL}>`,
+    to: toEmail,
+    subject: "Your Invoice",
+    html: htmlContent
+  });
+};
 
-// Plan: ${data.plan}
-// Amount: ₹${data.amount}
-// Transaction ID: ${data.txnId}
-// Valid Till: ${data.expiry}
-// Date: ${data.date}
-
-// Thank you for subscribing!
-//       `
-//     });
-
-//     console.log("✅ Resend email sent:", result);
-//   } catch (err) {
-//     console.error("❌ Resend email failed:", err);
-//   }
-// };
-
-// export default { sendInvoice };
+export default mailer; // ✅ THIS LINE FIXES EVERYTHING
