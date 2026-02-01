@@ -9,6 +9,10 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendInvoice = async (to, data) => {
+  console.log("📧 Sending invoice to:", to);
+  console.log("📨 EMAIL:", process.env.EMAIL);
+  console.log("📨 EMAIL_PASS length:", process.env.EMAIL_PASS?.length);
+
   const mailOptions = {
     from: `"Subscription QA System" <${process.env.EMAIL}>`,
     to,
@@ -26,7 +30,12 @@ Thank you for subscribing!
 `
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("✅ Email sent:", info.response);
+  } catch (err) {
+    console.error("❌ Email failed:", err.message);
+  }
 };
 
 export default { sendInvoice };

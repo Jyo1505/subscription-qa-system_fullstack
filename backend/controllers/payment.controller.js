@@ -48,6 +48,7 @@ export const fakePayment = async (req, res) => {
 
     const { plan: currentPlan, expires_at } = subs[0];
 
+
     if (expires_at && new Date(expires_at) > new Date()) {
       if (currentPlan === "GOLD") {
         return res.status(400).json({
@@ -77,6 +78,7 @@ export const fakePayment = async (req, res) => {
       "SELECT email FROM users WHERE id=?",
       [req.userId]
     );
+    console.log("📧 Attempting to send invoice to:", user.email);
 
     if (user?.email) {
       await mailer.sendInvoice(user.email, {
