@@ -74,14 +74,23 @@ export const fakePayment = async (req, res) => {
 
     // 4️⃣ Send invoice (optional)
     if (user?.email) {
-      await mailer.sendInvoice(user.email, {
-        plan,
-        amount: selectedPlan.price,
-        txnId: "TXN" + Date.now(),
-        expiry: newExpiry.toDateString(),
-        date: new Date().toDateString()
-      });
-    }
+  try {
+    await mailer(
+      user.email,
+      `
+        <h2>Invoice</h2>
+        <p>Plan: ${plan}</p>
+        <p>Amount: ₹${selectedPlan.price}</p>
+        <p>Transaction ID: TXN${Date.now()}</p>
+        <p>Valid till: ${newExpiry.toDateString()}</p>
+        <p>Date: ${new Date().toDateString()}</p>
+      `
+    );
+  } catch (emailErr) {
+    console.error("Invoice email failed:", emailErr.message);
+    // DO NOT throw
+  }
+}
 
     res.json({
       message: "Payment successful",
