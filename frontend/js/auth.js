@@ -127,7 +127,14 @@ function checkPasswordStrength() {
 }
 
 function logout() {
+  // remove token
   localStorage.removeItem("token");
-  alert("Logged out successfully");
-  window.location = "index.html";
+
+  // show proper message (instead of cookie / alert)
+  showMessage("Logged out successfully", "success");
+
+  // redirect after short delay
+  setTimeout(() => {
+    window.location = "index.html";
+  }, 1000);
 }
