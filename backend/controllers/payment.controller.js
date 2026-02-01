@@ -81,13 +81,14 @@ export const fakePayment = async (req, res) => {
     console.log("📧 Attempting to send invoice to:", user.email);
 
     if (user?.email) {
-      await mailer.sendInvoice(user.email, {
-        plan,
-        amount: selectedPlan.price,
-        txnId: transactionId,
-        expiry: newExpiry.toDateString(),
-        date: new Date().toDateString()
-      });
+     await mailer.sendInvoice(user.email, {
+  plan,
+  amount: selectedPlan.price,
+  txnId: transactionId,
+  expiry: newExpiry.toDateString(),
+  date: new Date().toDateString()
+});
+
     }
 
     res.json({

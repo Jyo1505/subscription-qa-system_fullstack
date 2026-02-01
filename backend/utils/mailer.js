@@ -1,41 +1,29 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-let transporter = null;
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-function getTransporter() {
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-  }
-  return transporter;
-}
-
-export async function sendInvoice(to, data) {
+const sendInvoice = async (to, data) => {
   try {
-    const mailer = getTransporter();
-
-    await mailer.sendMail({
-      from: `"Subscription QA System" <${process.env.EMAIL}>`,
-      to,
+    const result = await resend.emails.send({
+      from: "Subscription QA <onboarding@resend.dev>",
+      to: to,
       subject: "Subscription Invoice",
-      text: `
-Payment Successful ✅
-
-Plan: ${data.plan}
-Amount: ₹${data.amount}
-Transaction ID: ${data.txnId}
-Valid Till: ${data.expiry}
-Date: ${data.date}
-`
+      html: `
+        <h2>Payment Successful ✅</h2>
+        <p><b>Plan:</b> ${data.plan}</p>
+        <p><b>Amount:</b> ₹${data.amount}</p>
+        <p><b>Transaction ID:</b> ${data.txnId}</p>
+        <p><b>Valid Till:</b> ${data.expiry}</p>
+        <p><b>Date:</b> ${data.date}</p>
+        <br/>
+        <p>Thank you for subscribing!</p>
+      `
     });
 
-    console.log("✅ Email sent to", to);
+    console.log("✅ Invoice email sent:", result.id);
   } catch (err) {
-    console.error("❌ Email failed:", err.message);
+    console.error("❌ Resend email failed:", err);
   }
-}
+};
+
+export default { sendInvoice };
