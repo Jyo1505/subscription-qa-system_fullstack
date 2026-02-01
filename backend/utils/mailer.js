@@ -8,6 +8,9 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+await transporter.verify();
+
+
 const sendInvoice = async (to, data) => {
   console.log("📧 Sending invoice to:", to);
   console.log("📨 EMAIL:", process.env.EMAIL);
