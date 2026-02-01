@@ -9,5 +9,5 @@ export default function isAllowed() {
   const hour = istTime.getHours();
 
   // Allow only between 10 and 11 IST
-  return hour >= 10 && hour < 13;
+  return hour >= 10 && hour < 23;
 }
