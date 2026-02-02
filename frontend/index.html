@@ -9,9 +9,18 @@
 <body>
 
 <div class="container">
+  <h1 align="center"> Welcome Back </h1>
+ <br>
+<p class="subtitle">
+   Ask questions, manage subscriptions, and track your usage.
+</p>
   <h2>Login</h2>
   <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
+  <div class="form-group password-group">
+  
+  <input type="password" id="password" placeholder="Enter password">
+  <span class="eye" onclick="togglePassword('password', this)">👁️</span>
+</div>
   <button onclick="login()">Login</button>
   <a href="register.html">Create Account</a>
 </div>

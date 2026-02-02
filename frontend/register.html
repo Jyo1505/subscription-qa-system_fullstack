@@ -8,9 +8,14 @@
 </head>
 <body>
 
-<div class="container">
-  <h2>Create Account</h2>
 
+<div class="container">
+  <h1 align="center"> Welcome </h1>
+ <br>
+<p class="subtitle">
+   Ask questions, manage subscriptions, and track your usage.
+</p>
+ <h2 align="left">Create Account</h2>
   <input 
     type="email" 
     id="email" 
@@ -19,28 +24,32 @@
     title="Please enter a valid Gmail address"
     required
   />
-
+<div class="form-group password-group">
 <input 
   type="password" 
   id="password" 
   placeholder="Create password"
+  
   onkeyup="checkPasswordStrength()"
   required
 />
-
+ <span class="eye" onclick="togglePassword('password', this)">👁️</span>
 <div id="strengthContainer">
   <div id="strengthBar"></div>
 </div>
 
 <p id="strengthText"></p>
+</div>
 
+
+<div class="form-group password-group">
 <input 
   type="password" 
   id="confirmPassword" 
   placeholder="Confirm password"
   required
 />
-
+  <span class="eye" onclick="togglePassword('confirmPassword', this)">👁️</span> </div>
   <button onclick="register()">Register</button>
 
   <p id="error" style="color:red; text-align:center;"></p>
